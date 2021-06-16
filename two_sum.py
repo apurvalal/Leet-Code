@@ -1,10 +1,12 @@
 class Solution:
-    def twoSum(self, target: int):
-        nums = []
-        solution = []
-        for index_start in range(len(nums)):
-            for index_next in range(index_start + 1, len(nums)):
-                if nums[index_start] + nums[index_next] == target:
-                    solution.append(index_start)
-                    solution.append(index_next)
-                    return solution
+    def twoSum(self, nums: List[int], target: int):
+        solution = {}
+        for index in range(len(nums)):
+            solution[index] = nums[index]
+
+        for index in range(len(nums)):
+            if (target - nums[index]) in solution.values():
+                for key, value in solution.items():
+                    if value == (target - nums[index]) and key!=index:
+                        required_value = key
+                        return [index, key]
